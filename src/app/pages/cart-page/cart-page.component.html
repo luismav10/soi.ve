@@ -1,0 +1,44 @@
+<div class="cart-page">
+  <h1 class="cart-page__title">Carrito de Compras</h1>
+
+  @if (cartService.cartItems().length === 0) {
+    <div class="cart-page__empty">
+      <p>Tu carrito está vacío.</p>
+      <a routerLink="/" class="cart-page__link">Ver productos</a>
+    </div>
+  } @else {
+    <div class="cart-page__content">
+      <div class="cart-page__items">
+        @for (item of cartService.cartItems(); track item.product.id) {
+          <div class="cart-item">
+            <img [src]="item.product.image" [alt]="item.product.name" class="cart-item__img" />
+            <div class="cart-item__info">
+              <h3 class="cart-item__name">{{ item.product.name }}</h3>
+              <p class="cart-item__price">S/ {{ item.product.price.toFixed(2) }}</p>
+            </div>
+            <div class="cart-item__qty">
+              <button class="cart-item__btn" (click)="decrease(item)">−</button>
+              <span class="cart-item__num">{{ item.quantity }}</span>
+              <button class="cart-item__btn" (click)="increase(item)">+</button>
+            </div>
+            <p class="cart-item__subtotal">S/ {{ (item.product.price * item.quantity).toFixed(2) }}</p>
+            <button class="cart-item__remove" (click)="remove(item.product.id)">✕</button>
+          </div>
+        }
+      </div>
+
+      <div class="cart-page__summary">
+        <h2>Resumen</h2>
+        <div class="cart-page__row">
+          <span>Productos</span>
+          <span>{{ cartService.cartItems().length }}</span>
+        </div>
+        <div class="cart-page__row cart-page__row--total">
+          <span>Total</span>
+          <span>S/ {{ cartService.total().toFixed(2) }}</span>
+        </div>
+        <button class="cart-page__checkout">Proceder al pago</button>
+      </div>
+    </div>
+  }
+</div>

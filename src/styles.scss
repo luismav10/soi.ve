@@ -1,0 +1,57 @@
+:root {
+  --color-white: #FFFFFF;
+  --color-primary: #99627A;
+  --color-secondary: #643843;
+  --color-primary-light: #b87a9a;
+  --color-secondary-light: #8a4d5a;
+  --color-bg: #faf5f7;
+  --color-text: #2d1b22;
+  --color-text-light: #6b4f5a;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 100;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input, select {
+  font-family: inherit;
+  font-size: inherit;
+}

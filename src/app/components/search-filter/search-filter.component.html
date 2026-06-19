@@ -1,0 +1,23 @@
+<div class="filter">
+  <div class="filter__search">
+    <span class="filter__icon">🔍</span>
+    <input
+      type="text"
+      placeholder="Buscar productos..."
+      [ngModel]="searchTerm()"
+      (ngModelChange)="onSearch($event)"
+      class="filter__input"
+    />
+  </div>
+  <div class="filter__categories">
+    @for (cat of categories; track cat) {
+      <button
+        class="filter__chip"
+        [class.active]="selectedCategory() === cat"
+        (click)="onCategory(cat)"
+      >
+        {{ cat }}
+      </button>
+    }
+  </div>
+</div>

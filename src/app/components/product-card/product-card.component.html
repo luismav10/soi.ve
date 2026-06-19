@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card__image-wrap">
+    <img [src]="product().image" [alt]="product().name" class="card__image" loading="lazy" />
+    @if (product().isNew) {
+      <span class="card__badge">Nuevo</span>
+    }
+    <button class="card__fav" (click)="toggleFavorite.emit(product())" [class.filled]="isFavorite()">
+      {{ isFavorite() ? '♥' : '♡' }}
+    </button>
+  </div>
+  <div class="card__body">
+    <span class="card__category">{{ product().category }}</span>
+    <h3 class="card__name">{{ product().name }}</h3>
+    <p class="card__desc">{{ product().description }}</p>
+    <div class="card__footer">
+      <span class="card__price">S/ {{ product().price.toFixed(2) }}</span>
+      <button class="card__btn" (click)="addToCart.emit(product())">
+        {{ inCart() ? '✓ Agregado' : '+ Carrito' }}
+      </button>
+    </div>
+  </div>
+</div>

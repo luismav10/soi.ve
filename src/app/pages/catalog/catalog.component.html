@@ -1,0 +1,25 @@
+<div class="catalog">
+  <div class="catalog__header">
+    <h1 class="catalog__title">Nuestros Productos</h1>
+    <p class="catalog__subtitle">Descubre la belleza que hay en ti</p>
+  </div>
+
+  <app-search-filter
+    (searchChange)="onSearch($event)"
+    (categoryChange)="onCategory($event)"
+  />
+
+  <div class="catalog__grid">
+    @for (product of filteredProducts(); track product.id) {
+      <app-product-card
+        [product]="product"
+        [isFavorite]="isFavorite(product.id)"
+        [inCart]="inCart(product.id)"
+        (addToCart)="addToCart($event)"
+        (toggleFavorite)="toggleFavorite($event)"
+      />
+    } @empty {
+      <p class="catalog__empty">No se encontraron productos.</p>
+    }
+  </div>
+</div>

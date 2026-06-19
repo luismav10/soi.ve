@@ -1,0 +1,22 @@
+<div class="favorites-page">
+  <h1 class="favorites-page__title">Mis Favoritos</h1>
+
+  @if (favoritesService.favorites().length === 0) {
+    <div class="favorites-page__empty">
+      <p>No tienes productos favoritos aún.</p>
+      <a routerLink="/" class="favorites-page__link">Explorar catálogo</a>
+    </div>
+  } @else {
+    <div class="favorites-page__grid">
+      @for (product of favoritesService.favorites(); track product.id) {
+        <app-product-card
+          [product]="product"
+          [isFavorite]="true"
+          [inCart]="inCart(product.id)"
+          (addToCart)="addToCart($event)"
+          (toggleFavorite)="toggleFavorite($event)"
+        />
+      }
+    </div>
+  }
+</div>

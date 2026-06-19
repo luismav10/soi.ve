@@ -1,0 +1,22 @@
+<header class="navbar">
+  <div class="navbar__inner">
+    <a routerLink="/" class="navbar__logo">
+      <img src="assets/images/SOI-variacion-rosa-oscuro-fondo-transparente.png" alt="SOI.VE" class="navbar__logo-img">
+    </a>
+    <nav class="navbar__links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Catálogo</a>
+      <a routerLink="/favorites" routerLinkActive="active" class="navbar__link-with-count">
+        Favoritos
+        @if (favoritesService.favorites().length > 0) {
+          <span class="navbar__badge">{{ favoritesService.favorites().length }}</span>
+        }
+      </a>
+      <a routerLink="/cart" routerLinkActive="active" class="navbar__link-with-count">
+        Carrito
+        @if (cartService.cartItems().length > 0) {
+          <span class="navbar__badge">{{ cartService.cartItems().length }}</span>
+        }
+      </a>
+    </nav>
+  </div>
+</header>
