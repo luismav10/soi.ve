@@ -1,20 +1,35 @@
 <div class="card">
   <div class="card__image-wrap">
-    <img [src]="product().image" [alt]="product().name" class="card__image" loading="lazy" />
+    @if (product().variants?.length) {
+      <div class="card__track" #track (scroll)="onScroll()">
+        @for (v of product().variants; track $index) {
+          <img [src]="v.image" [alt]="v.name" class="card__image" loading="lazy" />
+        }
+      </div>
+      <button class="card__arrow card__arrow--left" (click)="$event.stopPropagation(); slide(-1)" [disabled]="selectedVariant() === 0">‹</button>
+      <button class="card__arrow card__arrow--right" (click)="$event.stopPropagation(); slide(1)" [disabled]="selectedVariant() === (product().variants!.length - 1)">›</button>
+      <div class="card__dots" (click)="$event.stopPropagation()">
+        @for (v of product().variants; track $index) {
+          <span class="card__dot" [class.active]="selectedVariant() === $index"></span>
+        }
+      </div>
+    } @else {
+      <img [src]="product().image" [alt]="product().name" class="card__image" loading="lazy" />
+    }
     @if (product().isNew) {
       <span class="card__badge">Nuevo</span>
     }
-    <button class="card__fav" (click)="toggleFavorite.emit(product())" [class.filled]="isFavorite()">
+    <button class="card__fav" (click)="$event.stopPropagation(); toggleFavorite.emit(product())" [class.filled]="isFavorite()">
       {{ isFavorite() ? '♥' : '♡' }}
     </button>
   </div>
   <div class="card__body">
     <span class="card__category">{{ product().category }}</span>
-    <h3 class="card__name">{{ product().name }}</h3>
+    <h3 class="card__name">{{ currentName() }}</h3>
     <p class="card__desc">{{ product().description }}</p>
     <div class="card__footer">
-      <span class="card__price">S/ {{ product().price.toFixed(2) }}</span>
-      <button class="card__btn" (click)="addToCart.emit(product())">
+      <span class="card__price">USD {{ product().price.toFixed(2) }}</span>
+      <button class="card__btn" (click)="$event.stopPropagation(); addToCart.emit(product())">
         {{ inCart() ? '✓ Agregado' : '+ Carrito' }}
       </button>
     </div>

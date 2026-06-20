@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .card {
   background: var(--color-white);
   border-radius: var(--radius-md);
@@ -8,19 +12,94 @@
   &:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+
+    .card__arrow {
+      opacity: 1;
+    }
   }
 
   &__image-wrap {
     position: relative;
-    aspect-ratio: 3 / 4;
     overflow: hidden;
     background: #f0e8ec;
   }
 
+  &__track {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   &__image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: block;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    line-height: 1;
+    opacity: 0;
+    transition: opacity 0.2s, background 0.2s;
+    z-index: 2;
+
+    &:hover {
+      background: white;
+    }
+
+    &:disabled {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+
+    &--left {
+      left: 0.5rem;
+    }
+
+    &--right {
+      right: 0.5rem;
+    }
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.35rem;
+    z-index: 2;
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    transition: all 0.2s;
+
+    &.active {
+      background: white;
+      width: 16px;
+      border-radius: 3px;
+    }
   }
 
   &__badge {

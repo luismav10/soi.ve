@@ -9,7 +9,12 @@ import { ProductCategory } from '../../models/product.model';
   styleUrl: './search-filter.component.scss'
 })
 export class SearchFilterComponent {
-  readonly categories: ProductCategory[] = ['Todos', 'Labios', 'Ojos', 'Rostro', 'Uñas', 'Cuidado'];
+  readonly categories: ProductCategory[] = [
+    'Todos', 'Skin', 'Primers', 'Bases', 'Correctores', 'Polvos',
+    'Rubores', 'Contorno', 'Iluminador', 'Sombras', 'Delineadores',
+    'Diamantinas', 'Pestañas', 'Labios', 'Setting Spray',
+    'Herramientas', 'Brochas', 'Hair'
+  ];
   searchTerm = signal('');
   selectedCategory = signal<ProductCategory>('Todos');
 
