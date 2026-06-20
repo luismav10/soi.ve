@@ -10,19 +10,21 @@
     <div class="cart-page__content">
       <div class="cart-page__items">
         @for (item of cartService.cartItems(); track item.product.id) {
-          <div class="cart-item">
+          <div class="cart-item" @fadeIn>
             <img [src]="item.product.image" [alt]="item.product.name" class="cart-item__img" />
             <div class="cart-item__info">
               <h3 class="cart-item__name">{{ item.product.name }}</h3>
-              <p class="cart-item__price">S/ {{ item.product.price.toFixed(2) }}</p>
+              <p class="cart-item__price">USD {{ item.product.price.toFixed(2) }}</p>
             </div>
-            <div class="cart-item__qty">
-              <button class="cart-item__btn" (click)="decrease(item)">−</button>
-              <span class="cart-item__num">{{ item.quantity }}</span>
-              <button class="cart-item__btn" (click)="increase(item)">+</button>
+            <div class="cart-item__actions">
+              <div class="cart-item__qty">
+                <button class="cart-item__btn" (click)="decrease(item)">−</button>
+                <span class="cart-item__num">{{ item.quantity }}</span>
+                <button class="cart-item__btn" (click)="increase(item)">+</button>
+              </div>
+              <p class="cart-item__subtotal">USD {{ (item.product.price * item.quantity).toFixed(2) }}</p>
+              <button class="cart-item__remove" (click)="remove(item.product.id)">✕</button>
             </div>
-            <p class="cart-item__subtotal">S/ {{ (item.product.price * item.quantity).toFixed(2) }}</p>
-            <button class="cart-item__remove" (click)="remove(item.product.id)">✕</button>
           </div>
         }
       </div>
@@ -35,7 +37,7 @@
         </div>
         <div class="cart-page__row cart-page__row--total">
           <span>Total</span>
-          <span>S/ {{ cartService.total().toFixed(2) }}</span>
+          <span>USD {{ cartService.total().toFixed(2) }}</span>
         </div>
         <button class="cart-page__checkout">Proceder al pago</button>
       </div>

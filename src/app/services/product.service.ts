@@ -15,7 +15,7 @@ export class ProductService {
     { id: 6, name: 'ELF Poreless Putty Primer', description: 'Primer matificante sin poros', price: 14.00, image: 'assets/images/primers/elf-poreless-putty-primer.jpeg', category: 'Primers', isNew: true },
 
     // Bases
-    { id: 7, name: 'AOA Matte Vision Hi Def', description: 'Base matte de alta definición', price: 5.00, image: 'https://placehold.co/300x400/99627A/FFFFFF?text=AOA+Base', category: 'Bases', isNew: true,
+    { id: 7, name: 'AOA Matte Vision Hi-Def', description: 'Base matte de alta definición', price: 5.00, image: 'https://placehold.co/300x400/99627A/FFFFFF?text=AOA+Base', category: 'Bases', isNew: true,
       variants: [
         { name: 'L2', image: 'assets/images/bases/AOA-matte-vision-hi-def-L2.jpg', color: '#F5DEB3' },
         { name: 'L3', image: 'assets/images/bases/AOA-matte-vision-hi-def-L3.jpg', color: '#DEB887' },

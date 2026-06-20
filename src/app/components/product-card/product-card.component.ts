@@ -1,11 +1,20 @@
 import { Component, input, output, signal, viewChild, ElementRef } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-card',
   imports: [],
   templateUrl: './product-card.component.html',
-  styleUrl: './product-card.component.scss'
+  styleUrl: './product-card.component.scss',
+  animations: [
+    trigger('fadeSlide', [
+      transition('* => *', [
+        style({ opacity: 0, transform: 'translateY(-6px)' }),
+        animate('0.25s ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class ProductCardComponent {
   product = input.required<Product>();
@@ -31,7 +40,7 @@ export class ProductCardComponent {
     const p = this.product();
     const idx = this.selectedVariant();
     if (p.variants?.length && p.variants[idx]) {
-      return `${p.name} — ${p.variants[idx].name}`;
+      return `${p.name} | ${p.variants[idx].name}`;
     }
     return p.name;
   }

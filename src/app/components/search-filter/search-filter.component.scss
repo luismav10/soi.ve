@@ -36,7 +36,14 @@
   &__categories {
     display: flex;
     gap: 0.5rem;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__chip {

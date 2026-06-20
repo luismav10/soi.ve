@@ -11,13 +11,15 @@
 
   <div class="catalog__grid">
     @for (product of filteredProducts(); track product.id) {
-      <app-product-card
-        [product]="product"
-        [isFavorite]="isFavorite(product.id)"
-        [inCart]="inCart(product.id)"
-        (addToCart)="addToCart($event)"
-        (toggleFavorite)="toggleFavorite($event)"
-      />
+      <div @flyIn>
+        <app-product-card
+          [product]="product"
+          [isFavorite]="isFavorite(product.id)"
+          [inCart]="inCart(product.id)"
+          (addToCart)="addToCart($event)"
+          (toggleFavorite)="toggleFavorite($event)"
+        />
+      </div>
     } @empty {
       <p class="catalog__empty">No se encontraron productos.</p>
     }

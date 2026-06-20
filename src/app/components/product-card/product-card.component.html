@@ -25,7 +25,7 @@
   </div>
   <div class="card__body">
     <span class="card__category">{{ product().category }}</span>
-    <h3 class="card__name">{{ currentName() }}</h3>
+    <h3 class="card__name" [@fadeSlide]="selectedVariant()">{{ currentName() }}</h3>
     <p class="card__desc">{{ product().description }}</p>
     <div class="card__footer">
       <span class="card__price">USD {{ product().price.toFixed(2) }}</span>

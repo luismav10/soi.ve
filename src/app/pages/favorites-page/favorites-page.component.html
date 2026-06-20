@@ -9,13 +9,15 @@
   } @else {
     <div class="favorites-page__grid">
       @for (product of favoritesService.favorites(); track product.id) {
-        <app-product-card
-          [product]="product"
-          [isFavorite]="true"
-          [inCart]="inCart(product.id)"
-          (addToCart)="addToCart($event)"
-          (toggleFavorite)="toggleFavorite($event)"
-        />
+        <div @flyIn>
+          <app-product-card
+            [product]="product"
+            [isFavorite]="true"
+            [inCart]="inCart(product.id)"
+            (addToCart)="addToCart($event)"
+            (toggleFavorite)="toggleFavorite($event)"
+          />
+        </div>
       }
     </div>
   }
